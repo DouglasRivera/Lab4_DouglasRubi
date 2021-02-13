@@ -76,10 +76,13 @@ public class Lab4_DouglasRivera {
                             Equipos.remove(posicionEquipo);
                             break;
                         case 4:
-                            
+                            for (Equipos equipo : Equipos) {
+                                System.out.println(equipo.toString()+"\n");
+                            }
                             break;
                     }
                 }
+                break;
                 case 2:{
                     int op = Integer.parseInt(JOptionPane.showInputDialog("Que desea hacer?\n 1. Crear\n 2. Modificar\n 3.Eliminar\n 4. Listar"));
                     switch (op) {
@@ -88,11 +91,24 @@ public class Lab4_DouglasRivera {
                             for (int i = 0; i < Equipos.size(); i++) {
                                 listaEquipos+=i+". "+Equipos.get(i).getNombre()+"\n";
                             }
-                            int posicionEquipos = Integer.parseInt(JOptionPane.showInputDialog(listaEquipos+"Ingrese que la posición de la corperación a la cual le desea añadir una marca"));
-                            
+                            int posicionEquipos = Integer.parseInt(JOptionPane.showInputDialog(listaEquipos+"Ingrese que la posición del equipo"));
+                            if(Equipos.get(posicionEquipos).getJugadores().size() >= 5){
+                                JOptionPane.showMessageDialog(null, "Ya ingreso el maximo de jugadores");
+                                break;
+                            }
                             String listaJugadores = "Ingresa el tipo de jugador (1: Pateador, 2: Tirador)\n";
                             int tipoJugador = Integer.parseInt(JOptionPane.showInputDialog(listaJugadores));
                             if(tipoJugador==1){
+                               int NumeroPateadores = 0;
+                                for (Jugadores jugador : Equipos.get(posicionEquipos).getJugadores()) {
+                                    if(jugador instanceof Pateadores){
+                                        NumeroPateadores++;
+                                    }
+                                }
+                                if(NumeroPateadores>=3){
+                                     JOptionPane.showMessageDialog(null, "Ya ingreso el maximo de pateadores");
+                                    break;
+                                }
                                 String nombre = JOptionPane.showInputDialog("Ingrese el Nombre");
                                 String apodo = JOptionPane.showInputDialog("Ingrese el Apodo");
                                 int NumeroCamisa = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la camisa"));
@@ -107,6 +123,16 @@ public class Lab4_DouglasRivera {
                                 int HabilidadRegateadora = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la habilidad regateadora del 1 al 100"));
                                 Equipos.get(posicionEquipos).getJugadores().add(new Pateadores(nombre, apodo, NumeroCamisa, EquipoFut, EquipoBasket, JugadorFav, MayorEdad, YearNacimiento, NumeroEstrellas,Equipos.get(posicionEquipos), HabilidadPateadora, Fuerza, HabilidadRegateadora));
                             } else if(tipoJugador==2){
+                                int NumeroTiradores = 0;
+                                for (Jugadores jugador : Equipos.get(posicionEquipos).getJugadores()) {
+                                    if(jugador instanceof Tiradores){
+                                        NumeroTiradores++;
+                                    }
+                                }
+                                if(NumeroTiradores>=2){
+                                     JOptionPane.showMessageDialog(null, "Ya ingreso el maximo de pateadores");
+                                    break;
+                                }
                                 String nombre = JOptionPane.showInputDialog("Ingrese el Nombre");
                                 String apodo = JOptionPane.showInputDialog("Ingrese el Apodo");
                                 int NumeroCamisa = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de la camisa"));
@@ -204,8 +230,8 @@ public class Lab4_DouglasRivera {
                             for (int i = 0; i < Equipos.size(); i++) {
                                 listaEquipos+=i+". "+Equipos.get(i).getNombre()+"\n";
                             }
-                            posicionEquipos = Integer.parseInt(JOptionPane.showInputDialog(listaEquipos+"Ingrese que la posición de la corperación a la cual le desea añadir una marca"));
-                            listaJugadores = "Ingresa el indice de una de los siguientes jugadores\n";
+                            posicionEquipos = Integer.parseInt(JOptionPane.showInputDialog(listaEquipos+"Ingrese que la posición del equipo desea eliminar "));
+                            listaJugadores = "Ingresa el indice d una de los siguientes jugadores\n";
                             for (int i = 0; i < Equipos.get(posicionEquipos).getJugadores().size(); i++) {
                                 listaJugadores+=i+". "+Equipos.get(posicionEquipos).getJugadores().get(i).getNombre()+"\n";
                             }
@@ -213,12 +239,19 @@ public class Lab4_DouglasRivera {
                             Equipos.get(posicionEquipos).getJugadores().remove(posicionJugadores);
                             break;
                         case 4:
-                            
+                              listaEquipos = "Ingresa el indice de una de los siguientes equipos\n";
+                            for (int i = 0; i < Equipos.size(); i++) {
+                                listaEquipos+=i+". "+Equipos.get(i).getNombre()+"\n";
+                            }
+                            posicionEquipos = Integer.parseInt(JOptionPane.showInputDialog(listaEquipos+"Ingrese que la posición del equipo a mostrar los jugadores"));
+                            for (Jugadores Jugador : Equipos.get(posicionEquipos).getJugadores()) {
+                                System.out.println(Jugador.toString()+"\n");
+                            }
                             break;
                     }
-                    break;
+                    
                 }
-                
+              break;
                 case 3:{
                     boolean juegoTerminado = false;
                     int puntosEquipoUno = 0;
@@ -309,7 +342,7 @@ public class Lab4_DouglasRivera {
                             String accionJugador = "Jugador uno selecciona que quieres hacer:\n 1: dar pase, 2: tirar";
                             int accion = Integer.parseInt(JOptionPane.showInputDialog(accionJugador));
                             if(accion==1){
-                                 String listaJugadores = "Ingresa el indice de una de los siguientes jugadores\n";
+                                 String listaJugadores = "Ingresa el indice de uno de los siguientes jugadores\n";
                             for (int i = 0; i <P2.getJugadores().size(); i++) {
                                 if(!P1.getJugadores().get(i).TieneElBalon){
                                     String tipoJugador = P1.getJugadores().get(i) instanceof Pateadores ? "Pateador" : "Tirador";
@@ -358,6 +391,8 @@ public class Lab4_DouglasRivera {
                         if(puntosEquipoUno>= 11 || puntosEquipoDos>=11){
                             juegoTerminado = true;
                         }
+                        movimientosEquipo1 = 5;
+                        movimientosEquipo2 = 5;
                     }
                     // mostrar los puntajes y otros datos
                     if(puntosEquipoUno>=11){
@@ -389,8 +424,9 @@ public class Lab4_DouglasRivera {
                           }
                        
                     }
-                    break;
+                   
                 }
+                break;
                 case 4:{
                     System.out.println("Saliendo......");
                     break;

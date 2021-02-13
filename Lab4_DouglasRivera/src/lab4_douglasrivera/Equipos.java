@@ -118,4 +118,9 @@ public class Equipos {
         this.TieneTurno = TieneTurno;
     }
 
+    @Override
+    public String toString() {
+        return "Equipos{" + "Nombre=" + Nombre + ", Estadio=" + Estadio + ", Pais=" + Pais + ", Entrenador=" + Entrenador + ", Due\u00f1o=" + Dueño + ", Mascota=" + Mascota + ", YearCreacion=" + YearCreacion + ", Color=" + Color + ", TieneTurno=" + TieneTurno + ", Jugadores=" + Jugadores + '}';
+    }
+
 }
