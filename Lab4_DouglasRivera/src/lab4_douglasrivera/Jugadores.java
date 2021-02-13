@@ -23,6 +23,7 @@ public class Jugadores{
     int NumeroEstrellas;
     Equipos MiEquipo;
     boolean TieneElBalon;
+    int PuntosAnotados;
 
     public Jugadores() {
     
@@ -148,6 +149,17 @@ public class Jugadores{
         MiEquipo.getJugadores().get(jugador).TieneElBalon = true;
         this.TieneElBalon = false;
     }
+
+    public int getPuntosAnotados() {
+        return PuntosAnotados;
+    }
+
+    public void setPuntosAnotados(int PuntosAnotados) {
+        this.PuntosAnotados = PuntosAnotados;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "Jugadores{" + "Nombre=" + Nombre + ", Apodo=" + Apodo + ", Numero=" + Numero + ", EquipoFutbol=" + EquipoFutbol + ", EquipoBasket=" + EquipoBasket + '}';

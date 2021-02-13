@@ -25,7 +25,15 @@ public class Pateadores extends Jugadores {
         setHabilidadPateadora(HabilidadPateadora);
         setFuerza(Fuerza);
         setHabilidadRegateadora(HabilidadRegateadora);
+    } 
+
+    public Pateadores(String Nombre, String Apodo, int Numero, String EquipoFutbol, String EquipoBasket, String JugadorFavorito, boolean MayorEdad, int YearNacimiento, int NumeroEstrellas, Equipos MiEquipo, int HabilidadPateadora, int Fuerza, int HabilidadRegateadora) {
+        super(Nombre, Apodo, Numero, EquipoFutbol, EquipoBasket, JugadorFavorito, MayorEdad, YearNacimiento, NumeroEstrellas, MiEquipo);
+        setHabilidadPateadora(HabilidadPateadora);
+        setFuerza(Fuerza);
+        setHabilidadRegateadora(HabilidadRegateadora);
     }
+    
 
     public int getHabilidadPateadora() {
         return HabilidadPateadora;
@@ -68,9 +76,18 @@ public class Pateadores extends Jugadores {
         int high = 101;
         int result = rand.nextInt(high - low) + low;
         if(result >= 1 && result<= ProbabilidadAnotar){
+            PuntosAnotados+=1;
             return true;
+            
         }else
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: "+Nombre+" Tipo jugador: Pateador "+ "Puntos anotados "+PuntosAnotados;
+    }
+    
+    
 
 }

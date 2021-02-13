@@ -26,6 +26,15 @@ public class Tiradores extends Jugadores{
         setManejoBalon(ManejoBalon);
     }
 
+    public Tiradores(String Nombre, String Apodo, int Numero, String EquipoFutbol, String EquipoBasket, String JugadorFavorito, boolean MayorEdad, int YearNacimiento, int NumeroEstrellas, Equipos MiEquipo, int TiroTres, int TiroDeDos, int ManejoBalon) {
+        super(Nombre, Apodo, Numero, EquipoFutbol, EquipoBasket, JugadorFavorito, MayorEdad, YearNacimiento, NumeroEstrellas, MiEquipo);
+        setTiroTres(TiroTres);
+        setTiroDeDos(TiroDeDos);
+        setManejoBalon(ManejoBalon);
+    }
+    
+    
+
     public int getTiroTres() {
         return TiroTres;
     }
@@ -68,6 +77,7 @@ public class Tiradores extends Jugadores{
         int high = 101;
         int result = rand.nextInt(high - low) + low;
         if(result >= 1 && result<= ProbabilidadAnotar){
+            PuntosAnotados+=3;
             return true;
         }else
         return false;
@@ -80,8 +90,12 @@ public class Tiradores extends Jugadores{
         int high = 101;
         int result = rand.nextInt(high - low) + low;
         if(result >= 1 && result<= ProbabilidadAnotar){
+            PuntosAnotados+=2;
             return true;
         }else
         return false;
+    }
+    public String toString() {
+        return "Nombre: "+Nombre+" Tipo jugador: Tirador "+ "Puntos anotados "+PuntosAnotados;
     }
 }
